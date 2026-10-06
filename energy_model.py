@@ -1,17 +1,17 @@
 """Track 1 - Smart Campus energy model.
 
-Final model = 0.90 * ImputeLinear + 0.10 * LightGBM.
+Submitted configuration = ImputeLinear only (the LightGBM component is trained but given zero weight, w_lgb = 0).
 
 ImputeLinear: the energy data behaves like an additive linear process:
     energy ~ building-type x hour profile + building base load and weekend shift
-             + day-of-week and month offsets
+             + day-of-week and seasonal terms
              + slopes on occupancy and humidity (per building) and temperature (per type)
              + cooling hinge above 28C + ~0.34 * previous_usage
-A ridge regression on that design gets CV RMSE ~3.02 on complete rows (LightGBM ~3.2-3.3).
+A ridge regression on that design gets CV RMSE ~3.02 on complete rows (LightGBM ~3.22).
 Because the target is linear in the numeric inputs, a missing input is best
-replaced by its conditional mean, so each numeric column gets a LightGBM imputer
-trained on the other columns (and on random extra masking, so it copes with
-rows missing several values).
+replaced by its conditional mean. The submitted model uses ridge imputers (one per
+missing column and set of other columns present, lin_imp_w = 1.0); LightGBM imputers
+trained on the other columns (with random extra masking) are also fitted but unused.
 """
 import numpy as np
 import pandas as pd

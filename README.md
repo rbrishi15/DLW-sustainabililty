@@ -82,7 +82,7 @@ Takeaways:
 
 | File | Contents |
 |---|---|
-| `track1_energy_notebook.ipynb` | The submitted notebook: EDA, validation and training (run only when `train.csv` is present), then prediction |
+| `track1_energy_notebook.ipynb` | The submitted notebook: EDA, validation and training (run only when `train.csv` is present), then prediction. Its code is unchanged; its explanatory notes were updated after the datathon to match the submitted configuration |
 | `energy_model.py` | The model code (same as the notebook's model cell), for easier reading |
 | `model.pkl` | The submitted trained model (`(model, feature_names)`, loadable with `joblib.load`) |
 | `submission.csv` | The submitted test predictions |
@@ -110,8 +110,9 @@ loads the model and writes `predictions.csv`, which is how the evaluation platfo
   test-like CV, because the masking there is random.
 - Weighted least squares and the LightGBM components are neutral in cross-validation. The LightGBM models are
   still stored in `model.pkl` but have zero weight in the final predictions.
-- The notebook's introductory notes were written before the final configuration was fixed; the `FINAL` and
-  `EXTRA` settings in its validation cell are what was submitted (and what `analysis/ablations.py` uses).
+- The notebook's explanatory notes were revised after the datathon so they describe the submitted configuration
+  (the `FINAL` and `EXTRA` settings in its validation cell, also used by `analysis/ablations.py`). No code changed:
+  the notebook still reproduces `submission.csv` exactly.
 
 ## Acknowledgements
 
