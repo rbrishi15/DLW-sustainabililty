@@ -1,0 +1,8 @@
+# Datathon data is not redistributed: place train.csv and test.csv from the organizers here
+train.csv
+test.csv
+sample_submission.csv
+predictions.csv
+__pycache__/
+.ipynb_checkpoints/
+.DS_Store
